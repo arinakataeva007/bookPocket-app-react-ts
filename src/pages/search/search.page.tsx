@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const SearchPage = () => {
+const SearchPage = ({inputSearch}:any) => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -33,7 +33,7 @@ const SearchPage = () => {
           type="text"
           className="section__input"
           placeholder="Поиск книги..."
-          value={searchTerm}
+          value={inputSearch}
           onChange={handleInputChange}
         />
         

@@ -1,0 +1,64 @@
+.welcome-page_section {
+  background: rgb(206, 161, 158);
+  .section__main-container {
+    display: flex;
+  }
+  .main-container__search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    .title1,
+    .title2 {
+      color: rgb(70, 30, 39);
+      font-size: 150px;
+      font-weight: 400;
+      line-height: 250px;
+      letter-spacing: 0px;
+      text-align: left;
+    }
+    .title2 {
+      margin-left: 220px;
+    }
+    .search{
+      display: flex;
+      gap: 20px;
+      .search-container__btn{
+        cursor: pointer;
+        width: 115px;
+        height: 50px;
+        font-size: 24px;
+        border-radius: 100px;
+        border: none;
+        box-sizing: border-box;
+        background: rgb(70, 30, 39);
+        color: aliceblue;
+      }
+      .search-container__input {
+        border: none;
+        box-sizing: border-box;
+        width: 560px;
+        height: 50px;
+        border-radius: 100px;
+        background: rgb(243, 240, 228);
+        margin-left: 15px;
+        padding-left: 20px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::placeholder {
+          font-size: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 400;
+        }
+        &:focus,
+        &:active {
+          outline: none;
+        }
+      }
+    }
+    
+  }
+}
