@@ -1,58 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 .welcome-page_section {
+  background: rgb(206, 161, 158);
+}
+.section__main-container {
+  display: flex;
+}
+.main-container__search-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 242px;
-  margin-bottom: 242px;
+  gap: 50px;
 }
-.section__title {
-  font-family: "Bebas Neue", sans-serif;
+.title1,
+.title2 {
+  color: rgb(70, 30, 39);
+  font-size: 150px;
   font-weight: 400;
-  font-style: normal;
-  margin-top: 85px;
-  color: rgb(0, 0, 0);
-  font-size: 144px;
-  font-weight: 400;
-  line-height: 190px;
-  letter-spacing: 15px;
+  line-height: 250px;
+  letter-spacing: 0px;
   text-align: left;
 }
-.title1 {
-  margin-left: -300px;
-}
 .title2 {
-  margin-left: 380px;
-  margin-top: -50px;
-  margin-bottom: 232px;
+  margin-left: 220px;
 }
-.section__btn-container {
-  display: flex;
-  gap: 80px;
-  margin-bottom: 232px;
-}
-.btn-container__btn {
-  cursor: pointer;
+.search-container__input {
   border: none;
-  border-radius: 10px;
-  background: rgb(157, 111, 134);
-  width: 470px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  font-size: 36px;
-  text-decoration: none;
-  animation: 4s show ease;
-}
-@keyframes show {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  width: 700px;
+  height: 50px;
+  border-radius: 100px;
+  background: rgb(243, 240, 228);
+  margin-left: 15px;
 }
