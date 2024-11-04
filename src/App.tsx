@@ -14,7 +14,7 @@ import Testpage from "./components/test.page";
 import WelcomePage from "./pages/welcome/welcome.page";
 import SearchPage from "./pages/search/search.page";
 import MenuNavigation from "./components/navigation/menu.component";
-import BookInfo from "./components/book-info/book-info-popUp.component";
+import BookInfo from "./pages/book-info/book-info.page";
 
 const App = () => {
   const [inputSearch, setInputSearch] = useState("");
