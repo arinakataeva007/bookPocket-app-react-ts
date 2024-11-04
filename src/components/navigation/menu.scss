@@ -1,0 +1,16 @@
+.navigation-container {
+  display: flex;
+  height: 50px;
+  box-sizing: border-box;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 361px;
+  gap: 329px;
+  background: rgb(206, 161, 158);
+  .menu-link {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import WelcomePage from "../welcome/welcome.page";
+import BookInfoPopUp from "../../components/book-info/book-info-popUp.component";
+import './search.scss';
+import { useNavigate } from "react-router-dom";
 
-const SearchPage = ({inputSearch}:any) => {
+const SearchPage = ({ inputSearch, onOpenBook }: any) => {
+  const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(inputSearch);
+  const defaultUrl = `https://www.googleapis.com/books/v1/volumes?q=${inputSearch}+intitle`;
 
   useEffect(() => {
     fetchBooks();
@@ -11,19 +17,20 @@ const SearchPage = ({inputSearch}:any) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&key=AIzaSyDSOa8Fi0MjJ0I3LVZXSRmFRuLkcOyp8go`
-      );
-      const data = await response.json();
-      setBooks(data.items.slice(0, 10)); 
-      console.log("DATA",data.items.slice(0, 10));
+      const response = await axios.get(defaultUrl);
+      setBooks(response.data.items.slice(0, 10));
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     }
   };
 
-  const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  const openBooksInfo = (id: string) => {
+    navigate("/book");
+    onOpenBook(id);
   };
 
   return (
@@ -33,22 +40,29 @@ const SearchPage = ({inputSearch}:any) => {
           type="text"
           className="section__input"
           placeholder="Поиск книги..."
-          value={inputSearch}
+          value={searchTerm}
           onChange={handleInputChange}
         />
-        
-        {/* <div className="book-list">
-          {books.length > 0 ? (
-            books.map((book) => (
-              <div key={book.id} className="book-item">
-                <h3>{book.volumeInfo.title}</h3>
-                <p>{book.volumeInfo.authors?.join(", ")}</p>
-              </div>
-            ))
-          ) : (
-            <p>Книги не найдены</p>
-          )}
-        </div> */}
+      </section>
+      <section className="books-list_section">
+        {books.map((book: any) => (
+          <div
+            key={book.id}
+            className="book-item"
+            onClick={() => openBooksInfo(book.id)}
+          >
+            <img
+              src={book.volumeInfo.imageLinks?.thumbnail}
+              alt={book.volumeInfo.title}
+              className="book-item__image"
+            />
+            <div className="book-item__info">
+              <h3>{book.volumeInfo.title}</h3>
+              <p>{book.volumeInfo.authors?.join(", ")}</p>
+              <p>{book.volumeInfo.description}</p>
+            </div>
+          </div>
+        ))}
       </section>
     </React.Fragment>
   );

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  Outlet
+} from "react-router-dom";
 import "./App.css";
 import "./pages/welcome/welcome.page";
 import "./pages/search/search.page";
@@ -7,20 +13,46 @@ import "./pages/search/search.page";
 import Testpage from "./components/test.page";
 import WelcomePage from "./pages/welcome/welcome.page";
 import SearchPage from "./pages/search/search.page";
-function App() {
-  const [inputSearch, setInputSearch] = useState('');
-  const getSearchInputValue = (inputValue:string)=>{
+import MenuNavigation from "./components/navigation/menu.component";
+import BookInfo from "./components/book-info/book-info-popUp.component";
+
+const App = () => {
+  const [inputSearch, setInputSearch] = useState("");
+  const [bookId, setBookId] = useState("");
+
+  const getSearchInputValue = (inputValue: string) => {
     setInputSearch(inputValue);
+  };
+
+  const getBookId = (bookId: string) => {
+    setBookId(bookId);
   }
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<WelcomePage onSearch={getSearchInputValue} />} />
-        <Route path="/collection" element={<Testpage />} />
-        <Route path="/search" element={<SearchPage inputSearch={inputSearch} />} />
+        <Route
+          path="/"
+          element={<WelcomePage onSearch={getSearchInputValue} />}
+        />
+        <Route path="/" element={<Layout />}>
+          <Route path="collection" element={<Testpage />} />
+          <Route path="search" element={<SearchPage inputSearch={inputSearch} onOpenBook={getBookId} />} /> 
+          <Route path="book" element={<BookInfo bookId={bookId} />}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+const Layout = () => {
+  const location = useLocation();
+
+  return (
+    <>
+      {location.pathname !== "/" && <MenuNavigation />}
+      <Outlet />
+    </>
+  );
+};
 
 export default App;

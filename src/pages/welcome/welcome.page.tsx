@@ -33,7 +33,7 @@ const WelcomePage = ({onSearch}:any) => {
             <div className="search">
               <input
                 className="search-container__input"
-                placeholder="Find the book"
+                placeholder="Найти книгу"
                 value={searchResult}
                 onChange={handleInputChange}
                 onKeyDown={(event) => {
@@ -42,7 +42,7 @@ const WelcomePage = ({onSearch}:any) => {
                     }
                   }}          
               ></input>
-              <button className="search-container__btn" onClick={handleNavigate}>Search</button>
+              <button className="search-container__btn" onClick={handleNavigate}>Все</button>
             </div>
           </div>
         </div>
